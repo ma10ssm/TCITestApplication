@@ -80,14 +80,15 @@ namespace TCIApplication.Test
             // Arrange            
             var employee1 = new Employee { EmployeeId = 1, FirstName = "Nick", MiddleName = "Andrew", LastName = "Alexander", Address = "259 Pinner Rd, Harrow, Greater London, UK", StartDate = DateTime.Parse("2011-01-09"), Department = null };
 
-            var repository = new InMemoryEmployeeRepository();            
-            var controller = GetEmployeeController(repository, null);
+            var employeeRepository = new InMemoryEmployeeRepository();
+            var departmentRepository = new InMemoryDepartmentRepository();
+            var controller = GetEmployeeController(employeeRepository, departmentRepository);
 
             // Act
             var result = controller.Create(employee1);
 
             // Assert
-            CollectionAssert.Contains(repository.GetAll().ToList(), employee1);
+            CollectionAssert.Contains(employeeRepository.GetAll().ToList(), employee1);
         }
 
         [TestMethod]

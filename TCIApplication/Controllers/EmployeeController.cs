@@ -39,6 +39,8 @@ namespace TCIApplication.Controllers
         {
             try
             {
+                PopulateDepartmentsDropDownList();
+
                 if (ModelState.IsValid)
                 {
                     _employeeRepository.Add(employee);
